@@ -1,0 +1,20 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>展示文件读取时触发事件的先后顺序</title>
+    <link rel="stylesheet" href="Css/css5.css" type="text/css">
+    <script type="text/javascript" language="JavaScript" src="Js/js3.js">
+    </script>
+</head>
+<body>
+<form id="frmTmp">
+    <fieldset>
+        <legend>文件读取事件的顺序：</legend>
+        <input type="file" name="fileUpload" id="fileUpload"
+               onchange="fileUpload_ShowEvent(this.files);"
+                />
+        <p id="pStatus"></p>
+    </fieldset>
+</form>
+</body>
+</html>

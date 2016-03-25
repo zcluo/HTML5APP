@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+    font-size: 12px;
+}
+
+.inputbtn{
+    border: solid 1px #ccc;
+    background-color: #eee;
+    line-height: 18px;
+    font-size: 12px;
+}
+.inputtxt{
+    border: solid 1px #ccc;
+    line-height: 18px;
+    font-size: 12px;
+    width: 180px;
+}
+fieldset{
+    padding: 10px;
+    width: 260px;
+}
+
+#spnPrev{
+    height: 100px;
+    width: 100px;
+    float: right;
+    display: block;
+}
+
+.p_center{
+    display: block;
+    margin: 0 auto;
+    
+}

@@ -1,0 +1,23 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>使用postMessage()方法实现跨文档传输数据</title>
+    <link rel="stylesheet" href="Css/css4.css" type="text/css">
+    <script type="text/javascript" language="JavaScript" src="Js/js3.js">
+    </script>
+</head>
+<body onload="pageload();">
+<form id="frmTmp">
+    <fieldset>
+        <legend>跨文档请求数据</legend>
+        <input id="txtNum" type="text" class="inputtxt">
+        <input id="btnAdd" type="button" value="请求"
+               class="inputbtn" onclick="btnSend_Click();">
+        <iframe id="ifrA" src="Message.html" width="0px"
+                height="0px" frameborder="0"/>
+
+        </ul>
+    </fieldset>
+</form>
+</body>
+</html>

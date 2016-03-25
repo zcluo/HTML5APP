@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>progress元素在下载中的使用</title>
+    <style type="text/css">
+        body{
+            font-size: 13px;
+        }
+        p{
+            padding: 0px;
+            margin: 0px;
+        }
+        .inputbtn{
+            border: solid 1px #ccc;
+            background-color:#eee;
+            line-height:18px;
+            font-size:12px;
+        }
+    </style>
+</head>
+<body>
+<p id="pTip">开始下载</p>
+<progress value="0" max="100" id="proDownFile"></progress>
+<input id="btn" type="button" value="下载" class="inputbtn" onclick="Btn_Click();"/>
+<input id="btn_reset" type="button" value="重置" class="inputbtn" onclick="Btn_Reset();"/>
+<script type="text/javascript">
+    var intValue=0;
+    var intTimer;
+    var objPro = document.getElementById("proDownFile");
+    var objTip = document.getElementById("pTip");
+    function Interval_handler(){
+        intValue++;
+        objPro.value = intValue;
+        if(intValue >= objPro.max){
+            clearInterval(intTimer);
+            objTip.innerHTML="下载完成！";
+            document.getElementById("btn").removeAttribute("disabled");
+        }
+        else{
+            objTip.innerHTML="正在下载"+intValue+"%";
+
+        }
+    }
+    function Btn_Click(){
+        document.getElementById("btn").setAttribute("disabled","disabled");
+        intTimer = setInterval(Interval_handler,100);
+    }
+    function Btn_Reset(){
+        clearInterval(intTimer);
+        objTip.innerHTML="开始下载";
+        document.getElementById("btn").removeAttribute("disabled");
+        objPro.value=0;
+        intValue=0;
+
+    }
+</script>
+</body>
+</html>

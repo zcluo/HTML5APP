@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>使用readAsDataURL()方法预览图片</title>
+    <link rel="stylesheet" href="Css/css5.css" type="text/css">
+    <script type="text/javascript" language="JavaScript" src="Js/js3.js">
+    </script>
+</head>
+<body>
+<form id="frmTmp">
+    <fieldset>
+        <legend>预览图片文件：</legend>
+        <input type="file" name="fileUpload" id="fileUpload"
+               accept="image/jpeg"
+               onchange="fileUpload_PrevImageFile(this.files);"
+               multiple="true"/>
+       <ul id="ulUpload"></ul>
+    </fieldset>
+</form>
+</body>
+</html>

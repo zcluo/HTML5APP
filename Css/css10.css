@@ -1,0 +1,12 @@
+.inputbtn{
+    border: solid 1px #ccc;
+    background-color: #eee;
+    line-height: 18px;
+    font-size: 12px;
+}
+.inputtxt{
+    border: solid 1px #ccc;
+    line-height: 18px;
+    font-size: 12px;
+    width: 180px;
+}

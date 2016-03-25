@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="Css/css3.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" async="true">
+        function Btn_Click(){
+            var strTxt = document.getElementById("txtContent").value;
+            var strDiv = document.getElementById("divShow");
+            strDiv.style.display="block";
+            strDiv.innerHTML="您输入的字符是： "+strTxt;
+        }
+    </script>
+    <noscript>您的浏览器不支持JavaScript!</noscript>
+    <title>脚本元素的使用</title>
+</head>
+<body>
+<input type="text" id="txtContent" class="inputtxt" onclick="Btn_Click();"/>
+<div id="divShow" class="divShow"></div>
+<section draggable="true">
+    <h1>陶国荣</h1>
+    <p>性别：男，邮箱地址：tao_guo_rong@163.com...</p>
+</section>
+<nav draggable="true">
+    <a href="index.html">首页</a>
+    <a href="book.html">图书</a>
+    <a href="bbs.html">论坛</a>
+</nav>
+<hgroup draggable="true">
+    <figcaption>标题组一</figcaption>
+    <h1>标题h1</h1>
+    <h2>标题h2</h2>
+</hgroup>
+<address title="作者联系方式">
+    Written by zcluo<br/>
+    <a href="mailto:zhcluo@gmail.com">Email me</a>
+</address>
+
+</body>
+</html>

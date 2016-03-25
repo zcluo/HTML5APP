@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+    font-size: 12px;
+}
+
+.inputbtn{
+    border: solid 1px #ccc;
+    background-color: #eee;
+    line-height: 18px;
+    font-size: 12px;
+}
+.inputtxt{
+    border: solid 1px #ccc;
+    line-height: 18px;
+    font-size: 12px;
+}
+.divShow{
+    border: solid 1px #666;
+    background-color: #eee;
+    margin-top: 5px;
+    padding: 5px;
+    width: 196px;
+    display: none;
+}
+.p3_5{
+    border: solid 1px #666;
+    background-color: #eee;
+}
+.p3_7{
+    border: solid 1px #666;
+    background-color: #eee;
+}
+
+.p3_8{
+    border: solid 1px #666;
+    background-color: #eee;
+}
+.p3_10{
+    border: solid 1px #666;
+    background-color: #eee;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>range类型的input元素</title>
+    <link type="text/css" href="Css/css4.css" rel="stylesheet">
+    <script type="text/javascript" language="JavaScript" src="Js/js4.js"></script>
+</head>
+<body>
+<form id="frmTmp">
+    <fieldset>
+    <legend>选择颜色值：</legend>
+    <span id="spnColor">
+        <input id="txtR" type="range" value="0"
+               min="0" max="255" onchange="setSpnColor()">
+        <input id="txtG" type="range" value="0"
+               min="0" max="255" onchange="setSpnColor()">
+        <input id="txtB" type="range" value="0"
+               min="0" max="255" onchange="setSpnColor()">
+        <span id="spnPrev"></span>
+    </span>
+
+    <p id="pColor">rgb(0,0,0)</p>
+    </fieldset>
+</form>
+</body>
+</html>

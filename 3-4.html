@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ol列表的使用</title>
+    <link href="Css/css3.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" async="true">
+        function Btn_Click(){
+            var strNum = document.getElementById("txtOrderNum").value;
+            var strDiv = document.getElementById("olList");
+            strDiv.setAttribute("start",strNum);
+        }
+    </script>
+</head>
+<body>
+<h5>各类图书销售排名</h5>
+<ol id="olList">
+    <li>计算机</li>
+    <li>社科</li>
+    <li>文艺</li>
+</ol>
+<h5>设置开始值</h5>
+<input type="text" id="txtOrderNum" class="inputtxt"
+        style="width: 60px;"/>
+<input type="button" value="确定" class="inputbtn"
+       onclick="Btn_Click();"/>
+<dl>
+    <dt>HTML 5</dt>
+    <dd>在当今时代，无论是前端设计还是web开发都应掌握它</dd>
+    <dt>jQuery</dt>
+    <dd>一种非常优秀的web开发前段框架</dd>
+</dl>
+<p id="p1">
+    <time datetime="2015-9-23">
+        今天是2015年9月23日
+    </time>
+</p>
+<p id="p2">
+    <time datetime="2015-9-22T21:00">
+        现在时间是2015年9月22日晚上9点
+    </time>
+</p>
+</body>
+</html>

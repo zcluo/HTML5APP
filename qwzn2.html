@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS渲染样例</title>
+    <style type="text/css">
+        h1,h2 {color:blue;font-style:italic}
+        .WARNING {
+            font-weight: bold;
+            font-size: 150%;
+            margin:0 1in 0 1in;
+            background-color: yellow;
+            border: solid red 8px;
+            padding: 10px;
+        }
+        .WARNING h1, .WARNING h2 {text-align: center;}
+        #special {
+            text-align:center;
+            text-transform: uppercase;
+        }
+    </style>
+    <script>
+        function addStyles(styles){
+            var styleElt,styleSheet;
+            if(document.createStyleSheet){
+                styleSheet=document.createStyleSheet();
+            }
+            else{
+                var head=document.getElementsByTagName("head")[0];
+                styleElt=document.createElement("style");
+                head.appendChild(styleElt);
+                styleSheet=document.styleSheets[document.styleSheets.length-1];
+            }
+            if(typeof styles==="string"){
+                if(styleElt)styleElt.innerHTML=styles;
+                else styleSheet.cssText=styles;
+            }
+            else{
+                var i=0;
+                for(var selector in styles){
+                    if(styleSheet.insertRule){
+                        var rule=selector+" {"+styles[selector]+"}";
+                        styleSheet.insertRule(rule,i++);
+                    }
+                    else{
+                        styleSheet.addRule(selector,styles[selector],i++);
+                    }
+                }
+            }
+        }
+        function shake(e,oncomplete,distance,time){
+            if(typeof e === "string")e=document.getElementById(e);
+            if(!time) time=500;
+            if(!distance) distance=5;
+            var originalStyle= e.style.cssText;
+            e.style.position="relative";
+            var start=(new Date()).getTime();
+            animate();
+
+            function animate(){
+                var now=(new Date()).getTime();
+                var elapsed=now-start;
+                var fraction=elapsed/time;
+
+                if(elapsed<1){
+                    var x=distance*Math.sin(fraction*4*Math.PI);
+                    e.style.left=x+"px";
+                    setTimeout(animate,Math.min(25,time-elapsed));
+                }
+                else{
+                    e.style.cssText=originalStyle;
+                    if(oncomplete) oncomplete(e);
+                }
+            }
+        }
+
+        function fadeOut(e,oncomplete,time){
+            if(typeof e==="string") e=document.getElementById(e);
+            if(!time)time=500;
+
+            var ease=Math.sqrt;
+
+            var start=(new Date()).getTime();
+            animate();
+            function animate(){
+                var elapsed=(new Date()).getTime()-start;
+                var fraction=elapsed/time;
+                if(fraction<1){
+                    var opacity=1-ease(fraction);
+                    e.style.opacity=String(opacity);
+                    setTimeout(animate,Math.min(25,time-elapsed));
+                }
+                else{
+                    e.style.opacity="1";
+                    if(oncomplete)oncomplete(e);
+                }
+            }
+        }
+
+        function test1(){
+            var head=document.getElementsByTagName("head")[0];
+            console.log(head.innerHTML);
+        }
+        function cancelHandler(event){
+            var event=event||window.event;
+            if(event.preventDefault)event.preventDefault();
+            if(event.returnValue)event.returnValue=false;
+            return false;
+        }
+        var whenReady=(function(){
+            var funcs=[];
+            var ready=false;
+
+            function handler(e){
+                if(ready) return;
+                if(e.type==="readystatechange"&&document.readyState!=="complete")
+                return;
+                for(var i=0;i<funcs.length;i++){
+                    funcs[i].call(document);
+                }
+                ready=true;
+                funcs=null;
+            }
+            if(document.addEventListener){
+                document.addEventListener("DOMContentLoaded",handler,false);
+                document.addEventListener("readystatechange",handler,false);
+                window.addEventListener("load",handler,false);
+            }
+            else if(document.attachEvent){
+                document.attachEvent("onreadystatechange",handler);
+                window.attachEvent("onload",handler);
+            }
+            return function whenReady(f){
+                if(ready) f.call(document);
+                else funcs.push(f);
+            }
+        }());
+        whenReady(test1);
+    </script>
+</head>
+<body>
+<h1>Cascading Style Sheets Demo</h1>
+<div class="WARNING">
+    <h2>Warning</h2>
+    This is a warning!
+    Notice how it grabs your attention with its bold text and bright colors.
+    Also notice that the heading is centered and in blue italics.
+</div>
+<p id="special">
+    This paragraph is centered<br>
+    and appears in uppercase letters.<br>
+    <span style="text-transform: none">
+        Here we explicitly use an inline style to override the uppercase letters.
+    </span>
+</p>
+<span style="text-shadow: 3px 3px 1px #888">Shadowed</span>
+<span style="position: relative;">
+    Shadowed
+    <span style="position:absolute;top:3px;left:3px;z-index: -1;color:#888">
+        Shadowed
+    </span>
+</span>
+<br>
+<br>
+<div style="padding:20px;margin: 20px;border:solid red 8px;width: 60px;height: 60px;float: none">test</div>
+<br>
+<br>
+<button onclick="whenReady(test1);">Shake and Fade</button>
+<br>
+<a href="1-1.html">1-1.html</a>
+<br>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>交互元素<details>的使用</title>
+    <style type="text/css">
+        body {
+            font-size: 12px;
+        }
+        span {
+            font-weight: bold;
+        }
+        details {
+            overflow: hidden;
+            height: 0px;
+            padding-left: 200px;
+            position: relative;
+            display: block;
+        }
+        details[open] {
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<!--
+    <span>隐藏注脚</span>
+    <details>
+        本页面生成于 2011-03-17
+    </details>
+    -->
+    <span>显示注脚</span>
+    <details open="open">
+        本页面生成于 2011-03-17
+    </details>
+
+</body>
+</html>

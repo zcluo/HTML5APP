@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>脚本控制交互元素</title>
+    <style type="text/css">
+        body {
+            font-size: 12px;
+        }
+        span {
+            font-weight: bold;
+        }
+        details {
+            overflow: hidden;
+            height: 0px;
+            padding-left: 200px;
+            position: relative;
+            display: block;
+        }
+        details[open] {
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<!--
+    <span>隐藏注脚</span>
+    <details>
+        本页面生成于 2011-03-17
+    </details>
+    -->
+<span onclick="span1_click();">显示注脚</span>
+<details id="details1">
+    本页面生成于 2011-03-17
+</details>
+
+<script type="text/javascript">
+    function span1_click(){
+        var objD =  document.getElementById("details1");
+        var attD = objD.getAttribute("open");
+        if(attD != "open"){
+            objD.setAttribute("open","open");
+        }
+        else {
+            objD.removeAttribute("open");
+        }
+    }
+</script>
+
+</body>
+</html>

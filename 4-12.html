@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>output元素的使用</title>
+    <link href="Css/css4.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        function changed(){
+            var txt1 = document.getElementById("txtNum_1");
+            var txt2 = document.getElementById("txtNum_2");
+            var res = document.getElementById("result");
+            result.value = txt1.value * txt2.value;
+        }
+    </script>
+</head>
+<body>
+<form id="frmTmp">
+    <fieldset>
+        <legend>请输入两个数字：</legend>
+        <input id="txtNum_1" type="text"
+               class="inputtxt" onchange="changed()">×
+        <input id="txtNum_2" type="text"
+               class="inputtxt" onchange="changed()">
+        <output id="result"></output>
+    </fieldset>
+</form>
+</body>
+</html>

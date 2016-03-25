@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>JAVASCRIPT权威指南</title>
+    <style>
+        /*本页的css样式表*/
+        .reveal * {display:none;}
+        .reveal *.handle {display:block;}
+        #clock {
+            font:bold 24pt sans;
+            background:#ddf;
+            padding:10px;
+            border:solid black 2px;
+            border-radius:10px;
+        }
+    </style>
+    <script type="text/javascript">
+        /*@cc_on
+         @if (@_jscript)
+         alert("In IE");
+         @end
+         @*/
+        function $$(id){
+            return document.getElementById(id);
+        }
+        function onLoad(f){
+            if(onLoad.loaded){
+                window.setTimeout(f,0);
+            }
+            else if(window.addEventListener){
+                window.addEventListener("load",f,false);
+            }
+            else if(window.attachEvent){
+                window.attachEvent("onload",f);
+            }
+        }
+        onLoad.loaded=false;
+        onLoad(function(){onLoad.loaded=true;console.log("called!");});
+        var click=function(){
+            var elements=document.getElementsByClassName("reveal");
+            for(var i in elements){
+                var elt=elements[i];
+                var title=elt.getElementsByClassName("handle")[0];
+                addRevealHandler(title,elt);
+            }
+            function addRevealHandler(title,elt) {
+                title.onclick = function () {
+                    if (elt.className === "reveal")
+                        elt.className = "revealed";
+                    else if (elt.className === "revealed")
+                        elt.className = "reveal";
+                };
+            }
+        };
+        function displayTime(){
+            var elt=document.getElementById("clock");
+            var now=new Date();
+            elt.innerHTML=now.toLocaleTimeString();
+            setTimeout(displayTime,1000);
+        }
+        window.onload=displayTime;
+
+        function invoke(f,start,interval,end){
+            if(!start) start=0;
+            if(arguments.length<2)
+                setTimeout(f,start);
+            else{
+                setTimeout(repeat,start);
+                function repeat(){
+                    var h=setInterval(f,interval);
+                    if(end) setTimeout(function(){clearInterval(h);alert("call end!")},end);
+                }
+            }
+        }
+        function rpClick(){
+            var n=0;
+            var start = $$("start").value;
+            var interval = $$("interval").value;
+            var end = $$("end").value;
+            if(start === null || start.trim().length===0)
+                start = null;
+
+            if(interval === null || interval.trim().length===0)
+                interval = null;
+
+            if(end === null || end.trim().length===0)
+                end = null;
+
+
+            invoke(function(){$$("rp").value="Call "+ (++n) +" times!";},start,interval,end);
+        }
+        function urlArgs(){
+            var args={};
+            var query=location.search.substring(1);
+            var pairs=query.split("&");
+            for(var i=0;i<pairs.length;i++){
+                var pos=pairs[i].indexOf("=");
+                if(pos==-1)continue;
+                var name=pairs[i].substring(0,pos);
+                var value=pairs[i].substring(pos+1);
+                value=decodeURIComponent(value);
+                args[name]=value;
+
+            }
+            return args;
+        }
+        function btnArgsClick(){
+            var queryObj=urlArgs();
+            var retelt=$$("args");
+            retelt.value=JSON.stringify(queryObj);
+        }
+        function btnDialog(){
+            do{
+                var name=prompt("What is your name?");
+                var correct=confirm("You enter '"+name+"'.\n"+"Click Okay to proceed or Cancel to re-enter.");
+
+
+            }while(!correct)
+            alert("Hello, "+name);
+        }
+        function sortrows(table,n,comparator){
+            var tbody=table.tBodies[0];
+            var rows=tbody.getElementsByTagName("tr");
+            rows=Array.prototype.slice.call(rows,1);
+
+            rows.sort(function(row1,row2){
+                var cell1=row1.getElementsByTagName("td")[n];
+                var cell2=row2.getElementsByTagName("td")[n];
+                //console("cell1.value is "+cell1.value);
+                //console("cell2.value is "+cell2.value);
+                var val1=cell1.textContent||cell1.innerText;
+
+                var val2=cell2.textContent||cell2.innerText;
+
+                if(comparator)return comparator(val1,val2);
+                if(parseFloat(val1)<parseFloat(val2)) return -1;
+                else if(parseFloat(val1)>parseFloat(val2)) return 1;
+                else return 0;
+            });
+            for(var i=0;i<rows.length;i++) tbody.appendChild(rows[i]);
+        }
+        function makeSortable(table){
+            var headers=table.getElementsByTagName("th");
+            for(var i=0;i<headers.length;i++){
+                (function(n){
+                    headers[i].onclick=function(){sortrows(table,n);};
+                }(i));
+            }
+        }
+
+        function btnMakeSortEnable(){
+            var tab = $$("tab1");
+
+            makeSortable(tab,1);
+        }
+    </script>
+</head>
+<div class="reveal">
+    <h1 class="handle">Click Here to Reveal Hidden Text</h1>
+    <p>This paragraph is hidden. It appears when you click on the title.</p>
+
+</div>
+<span id="clock"></span>
+<br/>
+<br/>
+<br/>
+<a href="javascript:void window.open('about:blank');">打开一个窗口</a>
+<a href='javascript:
+var e="",r="";
+do{
+e=prompt("Expression: "+e+"\n"+r+"\n",e);
+try{r="Result: "+eval(e);}
+catch(ex){r=ex;}
+}while(e);
+void 0;
+'>JavaScript Evaluator</a>
+<br/>
+<br/>
+<label>开始：</label>
+<input id="start" type="text" value=""/>
+<label>间隔：</label>
+<input id="interval" type="text" value=""/>
+<label>结束：</label>
+<input id="end" type="text" value=""/>
+<br/>
+<br/>
+<input id="btnRp" type="button" onclick="rpClick();" value="启动"/>
+<br/>
+<br/>
+<label>结果：</label>
+<input id="rp" type="text" value=""/>
+<br/>
+<br/>
+<label>查询参数值：</label>
+<input type="text" id="args" />
+<input type="button" id="btnArgs" onclick="btnArgsClick();" value="获取查询参数"/>
+<br/>
+<br/>
+<a href="javascript:void location.replace('5-5.html');">Location.replace("5-5.html")</a>
+<a href="javascript:void location.assign('5-5.html');">Location.assign("5-5.html")</a>
+<br/>
+<br/>
+<input type="button" id="dialog" onclick="btnDialog();" value="对话框"/>
+<br/>
+<br/>
+<table border="2px" id="tab1">
+    <tr>
+        <th>姓名</th><th>数学</th><th>语文</th>
+    </tr>
+    <tr>
+        <td>小明</td><td>23</td><td>21</td>
+    </tr>
+    <tr>
+        <td>小红</td><td>100</td><td>91</td>
+    </tr>
+    <tr>
+        <td>小蓝</td><td>98</td><td>95</td>
+    </tr>
+    <tr>
+        <td>小绿</td><td>83</td><td>72</td>
+    </tr>
+</table>
+<br/>
+<br/>
+<input type="button" id="t1" onclick="btnMakeSortEnable();" value="允许表头排序"/>
+<br/>
+<br/>
+<form id="form1" onreset="return confirm('Really erase All input and start over?'">
+    <fieldset>
+        <legend>Shipping Method</legend>
+        <label><input type="radio" name="method" value="1st">First-class</label>
+        <label><input type="radio" name="method" value="2day">2-day Air</label>
+        <label><input type="radio" name="method" value="overnite">Overnight</label>
+        <label>Package Num:<select multiple="multiple" style="width: 60px"><option id="op1" value="1">1个</option><option id="op2" value="2">2个</option></select></label>
+        <br/>
+        <br/>
+        <input type="submit" id="submit1">
+        <input type="reset" id="reset1">
+    </fieldset>
+
+</form>
+<br/>
+<br/>
+<div id="editor" contenteditable="true">
+    Click to Edit
+</div>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>交互元素<menu>与<command>的结合使用</title>
+    <style type="text/css">
+        body{
+            padding: 5px;
+            font-size: 12px
+        }
+        menu{
+            padding-left: 10px;
+            padding-bottom: 10px;
+            display: block;
+            border: solid 1px #365167;
+            width: 40px;
+            height: 50px;
+
+        }
+        command{
+            float: left;
+            margin: 5px;
+            width: 30px;
+            cursor: hand;
+        }
+        
+        #dialog{
+            display: none;
+            position: absolute;
+            left: 25%;
+            top: 9%;
+            font-size: 13px;
+        }
+
+        #dialog .title{
+            padding: 5px;
+            background-color: #eee;
+            height: 21px;
+            line-height: 21px;
+        }
+        #dialog .title .fleft{
+            float: left;
+        }
+        #dialog .title .fright{
+            float: right;
+        }
+        #dialog .content{
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+<menu>
+    <command onClick="command_click('文件')">文件</command>
+    <command onClick="command_click('打开')">打开</command>
+</menu>
+<div id="dialog">
+    <div class="title">
+        <div class="fleft" onclick="showtip()">提示</div>
+        <div class="fright" onclick="closedialog()">关闭</div>
+    </div>
+    <div class="content">
+        <div id="divTip"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    function command_click(strS){
+        document.getElementById("dialog").style.display="block";
+        var strContent="正在操作<font color=red> "+strS+"</font>选项";
+       // alert(document.getElementById("divTip").innerHTML);
+        document.getElementById("divTip").innerHTML=strContent;
+    }
+    function showtip(){
+        alert('提示框！');
+    }
+    function closedialog(){
+        document.getElementById("dialog").style.display='none';
+    }
+</script>
+</body>
+</html>
