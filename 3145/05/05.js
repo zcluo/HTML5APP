@@ -16,4 +16,6 @@ $(document).ready(function(){
             }
     }
     );
+    $('<a href="#top">back to top</a>').insertAfter('div.chapter p');
+    $('<a id="top"></a>').prependTo('body');
 });
