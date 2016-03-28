@@ -4,3 +4,24 @@
 // page or follow along with the examples in the book.
 //
 // See README.txt for more information.
+$(document).ready(function(){
+    $('#letter-a a').click(function(event){
+        event.preventDefault();
+        $('#dictionary').load('a.html');
+        var $ret = $.getJSON('b.json',null,function (data) {
+            /*console.log(JSON.stringify(data));*/
+            var html='';
+            $.each(data,function(entryIndex,entry){
+                html += '<div class="entry">';
+                html += '<h3 class="term">'+entry.term+'</h3>';
+                html += '<div class="part">'+entry.part+'</div>';
+                html += '<div class="definition">';
+                html += entry.definition;
+                html += '</div>';
+                html += '</div>';
+            });
+            $('#dictionary').html(html);
+        });
+       /* alert(JSON.stringify($ret));*/
+    });
+});
