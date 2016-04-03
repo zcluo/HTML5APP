@@ -121,4 +121,15 @@ $(document).ready(function(){
             $('#dictionary').html(html);
         });
     });
+    var url1 = 'http://localhost:8080/ajaxserverjsonp/user/showName';
+    $.ajax(url1,{
+        dataType:'jsonp',
+        data:{"id":1},
+        jsonpCallback: 'JsonpCallback',
+        contentType: 'application/jsonp;charset=UTF-8',
+        success:function (data) {
+            console.log(JSON.stringify(data));
+
+        }
+    })
 });
