@@ -11,7 +11,10 @@ $(document).ready(function(){
     $('#books').cycle({
         timeout:1000,
         speed:200,
-        pause:true
+        pause:true,
+        before:function () {
+            $('#slider').slider('value',$('#books li').index(this));
+        }
     });
 
     var $books = $('#books');
@@ -21,12 +24,46 @@ $(document).ready(function(){
         event.preventDefault();
         $books.cycle('pause');
         $.cookie('cyclePaused','y');
-    }).appendTo($controls);
+    }).button({icons:{primary:'ui-icon-pause'}}).appendTo($controls);
     $('<button>Resume</button>').click(function(event){
         event.preventDefault();
         // $books.cycle('resume');
-        $('ul:paused').cycle('resume');
+        var $paused = $('ul:paused');
+        if($paused.length){
+            $paused.cycle('resume');
+        }
+        else{
+            $(this).effect('shake',{distance:10});
+        }
         $.cookie('cyclePaused',null);
+    }).button({icons:{primary:'ui-icon-play'}}).appendTo($controls);
+    $books.hover(function(){
+        $books.find('.title').animate({
+            backgroundColor:'#eee',
+            color:'#000'
+        },1000);
+    },function(){
+        $books.find('.title').animate({
+            backgroundColor:'#000',
+            color:'#fff'
+        },1000);
+    });
+    $('h1').click(function (){
+
+        $(this).toggleClass('highlighted','slow','easeInExpo');
+    } );
+
+    $books.find('.title').resizable({handlers:'s'});
+    /*$('button').button();*/
+
+    $('<div id="slider"></div>').slider({
+        min: 0,
+        max: $('#books li').length - 1,
+        slide: function(event, ui) {
+            $books.cycle(ui.value);
+        }
     }).appendTo($controls);
+
+
 
 });
