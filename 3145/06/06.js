@@ -131,5 +131,25 @@ $(document).ready(function(){
             console.log(JSON.stringify(data));
 
         }
-    })
+    });
+
+    var JsonpCallback = function(){
+
+    };
+
+    var url2='https://api.vultr.com/v1/os/list';
+    $.ajax(url2,{
+        dataType:'jsonp',
+        //data:{"id":1},
+        jsonpCallback: 'JsonpCallback',
+        contentType: 'application/json;charset=UTF-8',
+        success:function (data) {
+            console.log(JSON.stringify(data));
+
+        },
+        error:function (data) {
+            console.log("error!");
+        }
+    });
+
 });
