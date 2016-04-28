@@ -121,35 +121,38 @@ $(document).ready(function(){
             $('#dictionary').html(html);
         });
     });
-    var url1 = 'http://localhost:8080/ajaxserverjsonp/user/showName';
+    var url1 = 'http://localhost:8080/ajaxserverjsonp/user/re';
     $.ajax(url1,{
         dataType:'jsonp',
         data:{"id":1},
-        jsonpCallback: 'JsonpCallback',
+        //jsonpCallback: 'JsonpCallback',
         contentType: 'application/jsonp;charset=UTF-8',
         success:function (data) {
+            //console.log(JSON.parse(data));
+            //var ret = JSON.parse(data);
+            console.log(data["127"].name);
             console.log(JSON.stringify(data));
 
         }
     });
 
-    var JsonpCallback = function(){
-
-    };
-
-    var url2='https://api.vultr.com/v1/os/list';
+    var url2 = 'http://localhost:8080/ajaxserverjsonp/jackson3';
     $.ajax(url2,{
         dataType:'jsonp',
         //data:{"id":1},
-        jsonpCallback: 'JsonpCallback',
-        contentType: 'application/json;charset=UTF-8',
+        //jsonpCallback: 'JsonpCallback',
+        contentType: 'application/jsonp;charset=UTF-8',
         success:function (data) {
-            console.log(JSON.stringify(data));
+            console.log("id is "+data.id);
+            //console.log(JSON.parse(data));
+            //var ret = JSON.parse(data);
+            //console.log(ret["127"].name);
 
-        },
-        error:function (data) {
-            console.log("error!");
         }
     });
+
+
+
+
 
 });
