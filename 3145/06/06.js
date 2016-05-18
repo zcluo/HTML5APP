@@ -121,7 +121,7 @@ $(document).ready(function(){
             $('#dictionary').html(html);
         });
     });
-    var url1 = 'http://localhost:8080/ajaxserverjsonp/user/re';
+   /* var url1 = 'http://localhost:8080/ajaxserverjsonp/user/re';
     $.ajax(url1,{
         dataType:'jsonp',
         data:{"id":1},
@@ -144,6 +144,22 @@ $(document).ready(function(){
         contentType: 'application/jsonp;charset=UTF-8',
         success:function (data) {
             console.log("id is "+data.id);
+            //console.log(JSON.parse(data));
+            //var ret = JSON.parse(data);
+            //console.log(ret["127"].name);
+
+        }
+    });*/
+
+    var para={ak: "GVs2W1UKnj1c9xPmNtOz4YcpD3I9npii", coor: "bd09ll", ip: "140.243.114.137"};
+    var url3 = 'http://api.map.baidu.com/location/ip';
+    $.ajax(url3,{
+        dataType:'jsonp',
+        data:para,
+        //jsonpCallback: 'JsonpCallback',
+        contentType: 'application/jsonp;charset=UTF-8',
+        success:function (data) {
+            console.log(data.point.x);
             //console.log(JSON.parse(data));
             //var ret = JSON.parse(data);
             //console.log(ret["127"].name);
