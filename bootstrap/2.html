@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv=”X-FRAME-OPTIONS” content=”SAMEORIGIN”>
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    var state = 0,
+            iframe = document.createElement('iframe'),
+            loadfn = function() {
+                if (state === 1) {
+                    var data = iframe.contentWindow.name;    // 读取数据
+                    alert(data);    //弹出'I was there!'
+                } else if (state === 0) {
+                    state = 1;
+                    iframe.contentWindow.location = "proxy.html";    // 设置的代理文件
+                }
+            };
+    iframe.src = 'https://api.vultr.com/v1/os/list';
+    if (iframe.attachEvent) {
+        iframe.attachEvent('onload', loadfn);
+    } else {
+        iframe.onload  = loadfn;
+    }
+    document.body.appendChild(iframe);
+</script>
+
+</body>
+</html>
