@@ -1,0 +1,93 @@
+<ProductsRoot>
+    <Products>
+        <ProductID>1</ProductID>
+        <ProductName>Chai</ProductName>
+        <CategoryID>1</CategoryID>
+        <QuantityPerUnit>10 boxes x 20 bags</QuantityPerUnit>
+        <UnitPrice>18</UnitPrice>
+    </Products>
+    <Products>
+        <ProductID>2</ProductID>
+        <ProductName>Chang</ProductName>
+        <CategoryID>1</CategoryID>
+        <QuantityPerUnit>24 - 12 oz bottles</QuantityPerUnit>
+        <UnitPrice>19</UnitPrice>
+    </Products>
+    <Products>
+        <ProductID>3</ProductID>
+        <ProductName>Aniseed Syrup</ProductName>
+        <CategoryID>2</CategoryID>
+        <QuantityPerUnit>12 - 550 ml bottles</QuantityPerUnit>
+        <UnitPrice>10</UnitPrice>
+    </Products>
+    <Products>
+        <ProductID>4</ProductID>
+        <ProductName>Chef Anton's Cajun Seasoning</ProductName>
+        <CategoryID>2</CategoryID>
+        <QuantityPerUnit>48 - 6 oz jars</QuantityPerUnit>
+        <UnitPrice>22</UnitPrice>
+    </Products>
+    <Products>
+        <ProductID>5</ProductID>
+        <ProductName>Chef Anton's Gumbo Mix</ProductName>
+        <CategoryID>2</CategoryID>
+        <QuantityPerUnit>36 boxes</QuantityPerUnit>
+        <UnitPrice>21.35</UnitPrice>
+    </Products>
+    <Products>
+        <ProductID>6</ProductID>
+        <ProductName>Chef Anton's Gumbo</ProductName>
+        <CategoryID>2</CategoryID>
+        <QuantityPerUnit>36 boxes</QuantityPerUnit>
+        <UnitPrice>21.35</UnitPrice>
+    </Products>
+    <Products>
+        <ProductID>7</ProductID>
+        <ProductName>hamburger bun</ProductName>
+        <CategoryID>5</CategoryID>
+        <QuantityPerUnit>36 boxes</QuantityPerUnit>
+        <UnitPrice>25.5</UnitPrice>
+    </Products>
+    <Products>
+        <ProductID>8</ProductID>
+        <ProductName>turkish bread</ProductName>
+        <CategoryID>5</CategoryID>
+        <QuantityPerUnit>36 boxes</QuantityPerUnit>
+        <UnitPrice>21.5</UnitPrice>
+    </Products>
+    <Products>
+        <ProductID>9</ProductID>
+        <ProductName>bread roll</ProductName>
+        <CategoryID>5</CategoryID>
+        <QuantityPerUnit>50 boxes</QuantityPerUnit>
+        <UnitPrice>25.5</UnitPrice>
+    </Products>
+    <Products>
+        <ProductID>10</ProductID>
+        <ProductName>beef burger</ProductName>
+        <CategoryID>6</CategoryID>
+        <QuantityPerUnit>12 boxes</QuantityPerUnit>
+        <UnitPrice>50.5</UnitPrice>
+    </Products>
+    <Products>
+        <ProductID>11</ProductID>
+        <ProductName>chicken burger</ProductName>
+        <CategoryID>6</CategoryID>
+        <QuantityPerUnit>12 boxes</QuantityPerUnit>
+        <UnitPrice>54.5</UnitPrice>
+    </Products>
+    <Products>
+        <ProductID>12</ProductID>
+        <ProductName>tiger prawns</ProductName>
+        <CategoryID>8</CategoryID>
+        <QuantityPerUnit>12 boxes</QuantityPerUnit>
+        <UnitPrice>70.5</UnitPrice>
+    </Products>
+    <Products>
+        <ProductID>13</ProductID>
+        <ProductName>cooked prawns</ProductName>
+        <CategoryID>8</CategoryID>
+        <QuantityPerUnit>12 boxes</QuantityPerUnit>
+        <UnitPrice>65.9</UnitPrice>
+    </Products>
+</ProductsRoot>

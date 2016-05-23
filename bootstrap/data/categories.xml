@@ -3,6 +3,8 @@
 		<CategoryID>1</CategoryID>
 		<CategoryName>Beverages</CategoryName>
 		<Description>Soft drinks, coffees, teas, beer, and 			ale</Description>
+
+
 	</Categories>
 	<Categories>
 		<CategoryID>2</CategoryID>
@@ -30,6 +32,7 @@
 		<CategoryID>6</CategoryID>
 		<CategoryName>Meat/Poultry</CategoryName>
 		<Description>Prepared meats</Description>
+
 	</Categories>
 		<Categories>
 		<CategoryID>7</CategoryID>
@@ -40,5 +43,6 @@
 		<CategoryID>8</CategoryID>
 		<CategoryName>Seafood</CategoryName>
 		<Description>Seaweed and fish</Description>
+
 	</Categories>
 </CategoriesRoot>
