@@ -56,13 +56,12 @@ $(document).ready(function () {
                     var cdesc = $(node).find('Description').first().text()
                     var obj = {
                         id: cid,
-                        text: ctext,
-                        desc: cdesc,
-                        tags: null
+                        name: ctext,
+                        desc: cdesc
                     };
                     if (node.childElementCount > 0&& $(node).find('Categories')) {
-                        obj.nodes = [];
-                        walkC($(node).children('Categories'), obj.nodes);
+                        obj.children = [];
+                        walkC($(node).children('Categories'), obj.children);
                     }
                     data.push(obj);
                 }
@@ -82,17 +81,19 @@ $(document).ready(function () {
                     var cquantitypu = $(node).find('QuantityPerUnit').first().text();
                     var cprice = $(node).find('UnitPrice').first().text();
                     var cateid = $(node).find('CategoryID').first().text();
+                    var ctitle = 'QuantityPerUnit: ' + cquantitypu + '; UnitPrice: ' + cprice;
                     var obj = {
                         id: cid,
-                        text: ctext,
+                        name: ctext,
+                        desc:ctitle,
                         cateid:cateid,
                         qpu:cquantitypu,
-                        price:cprice,
-                        tags: null
+                        price:cprice
+
                     };
                     if (node.childElementCount > 0&& $(node).find('Products')) {
-                        obj.nodes = [];
-                        walkP($(node).children('Products'), obj.nodes);
+                        obj.children = [];
+                        walkP($(node).children('Products'), obj.children);
                     }
                     data.push(obj);
                 }
@@ -112,9 +113,10 @@ $(document).ready(function () {
             for(var j = 0; j < categories.length; j++)
             {
                 if(categories[j].id === cateid)
-                    categories[j].nodes.push(products[i]);
+                    categories[j].children.push(products[i]);
             }
         }
+        console.log(JSON.stringify(categories));
         return categories;
     }
 
@@ -126,28 +128,27 @@ $(document).ready(function () {
 
         data: buildDomTree()
     };
-    $('#treeview').treeview(options);
-    //nodeSelected
-    $('#treeview').on('nodeSelected', function(event, data) {
-        console.log('clicked');
-        var message = '';
-        if(data.desc)
-            message = data.desc;
-        else
-            message = "QuantityPerUnit: " + data.qpu + "; " + " UnitPrice: " + data.price;
-        //$('<p></p>').text(message)
-        $('#dialog-message').append(message);
-        $( "#dialog-message" ).dialog({
-            modal: true,
-            buttons: {
-                Ok: function() {
-                    $('#dialog-message').text('')
-                    $( this ).dialog( "close" );
-                    //$(this).destroy();
-                }
+    var setting = {
+        view:{
+            showTitle:false
+        },
+        /*data:{
+            key:{
+                title:'desc'
             }
-        });
-    });
+        },*/
+        callback: {
+            onClick: zTreeOnClick
+        }
+    };
+
+    function zTreeOnClick(event, treeId, treeNode) {
+        alert(treeNode.desc);
+    };
+
+    //setting.view.showTitle = true & setting.data.key.title = ''
+    zTreeObj = $.fn.zTree.init($("#treeview"), setting, buildDomTree());
+
 
 
 
